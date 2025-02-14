@@ -62,6 +62,29 @@ export const deleteUserValidator = [
 ];
 
 
+export const registerValidatorAdmin = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
+    body("fullName").notEmpty().withMessage("El nombre es requerido"),
+    body("username").notEmpty().withMessage("El username es requerido"),
+    body("email").notEmpty().withMessage("El email es requerido"),
+    body("email").isEmail().withMessage("No es un email válido"),
+    body("email").custom(emailExists),
+    body("username").custom(usernameExists),
+    body("password").isStrongPassword({
+        minLength: 8,
+        minLowercase: 1,
+        minUppercase: 1,
+        minNumbers: 1,
+        minSymbols: 1
+    }),
+    validarCampos,
+    deleteFileOnError,
+    handleErrors
+];
+
+
+
 /*
 export const updatePasswordValidator = [
     param("uid").isMongoId().withMessage("No es un ID válido de MongoDB"),
