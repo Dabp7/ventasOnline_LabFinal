@@ -2,7 +2,30 @@
 
 import Category from './category.model.js';
 
-export const addCategory = async (req, res) => {
+export const createCategoryDefault = async(req, res) =>{
+    
+    try{
+        const defaultCategory = await Category.findOne({ nameCategory: "Categoria Predeterminada" });
+
+        if(!defaultCategory){
+            const category = new Category({
+                nameCategory: "Categoria Predeterminada",
+                description: "Categoria para productos sin categoria"
+            });
+        
+            await category.save();
+        }
+
+    }catch(err){
+        return res.status(500).json({
+            message: "Error al crear la categoria general",
+            error: err.message
+        });
+    }
+    
+}
+
+export const addCategory = async(req, res) =>{
     try {
         const data = req.body;
 
@@ -17,7 +40,7 @@ export const addCategory = async (req, res) => {
             category
         });
 
-    } catch (err) {
+    }catch(err){
         res.status(500).json({
             success: false,
             message: 'Error al crear la categoria',
@@ -26,11 +49,11 @@ export const addCategory = async (req, res) => {
     }
 }
 
-export const getCategory = async (req, res) => {
+export const getCategory = async(req, res) =>{
     const { limite = 10, desde = 0 } = req.query;
     const query = {};
 
-    try {
+    try{
         const category = await Category.find(query) 
             .skip(Number(desde))
             .limit(Number(limite));
@@ -42,7 +65,7 @@ export const getCategory = async (req, res) => {
             total,
             category
         });
-    } catch (error) {
+    }catch(error){
         res.status(500).json({
             success: false,
             message: 'Error al obtener las categorias',
@@ -51,8 +74,8 @@ export const getCategory = async (req, res) => {
     }
 }
 
-export const updateCategory = async (req, res) => {
-    try {
+export const updateCategory = async(req, res) =>{
+    try{
         const { idCategory } = req.params;
         const  data  = req.body;
 
@@ -63,7 +86,7 @@ export const updateCategory = async (req, res) => {
             msg: 'Categoria Actualizada',
             category,
         });
-    } catch (err) {
+    }catch(err){
         res.status(500).json({
             success: false,
             msg: 'Error al actualizar la categoria',
@@ -72,8 +95,8 @@ export const updateCategory = async (req, res) => {
     }
 }
 
-export const deleteCategory = async (req, res) => {
-    try {
+export const deleteCategory = async(req, res) =>{
+    try{
         const { idCategory } = req.params;
         
         await Category.findByIdAndDelete(idCategory);
@@ -82,7 +105,7 @@ export const deleteCategory = async (req, res) => {
             success: true,
             message: 'Categoria eliminada exitosamente' 
         });
-    } catch (err) {
+    }catch(err){
         res.status(500).json({
             success: false,
             message: 'Error al eliminar la categoria',

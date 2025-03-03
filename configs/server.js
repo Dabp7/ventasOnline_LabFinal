@@ -8,6 +8,7 @@ import { dbConnection } from "./mongo.js";
 import authRoutes from "../src/auth/auth.routes.js";
 import userRoutes from "../src/user/user.routes.js"
 import categoryRoutes from "../src/category/category.routes.js"
+import { createCategoryDefault } from "../src/category/category.controller.js"
 
 
 const middlewares = (app) => {
@@ -39,6 +40,7 @@ export const initServer = () => {
     try {
         middlewares(app);
         conectarDB();
+        createCategoryDefault();
         routes(app);
         app.listen(process.env.PORT)
         console.log(`Server running on port ${process.env.PORT}`)
