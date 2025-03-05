@@ -8,6 +8,7 @@ import { dbConnection } from "./mongo.js";
 import authRoutes from "../src/auth/auth.routes.js";
 import userRoutes from "../src/user/user.routes.js"
 import categoryRoutes from "../src/category/category.routes.js"
+import productRoutes from "../src/products/products.routes.js"
 import { createCategoryDefault } from "../src/category/category.controller.js"
 
 
@@ -23,6 +24,7 @@ const routes = (app) => {
     app.use("/ventaOnline/v1/auth", authRoutes);
     app.use("/ventaOnline/v1/user", userRoutes);
     app.use("/ventaOnline/v1/category", categoryRoutes)
+    app.use("ventaOnline/v1/product", productRoutes)
     //app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 };
 
