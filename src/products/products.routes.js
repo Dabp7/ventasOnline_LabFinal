@@ -14,7 +14,7 @@ router.post("/addProduct", createProductValidator, addProduct);
 
 router.get("/getProducts", getProducts);
 
-router.get("/searchProduct", getProductByIdValidator, searchProduct);
+router.get("/searchProduct/:idProduct", getProductByIdValidator, searchProduct);
 
 router.put("/updateProduct/:idProduct", updateProductValidator, updateProduct);
 

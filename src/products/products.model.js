@@ -1,4 +1,4 @@
-import { Schema, model} from "mongoose";
+import { Schema, model} from "mongoose"
 
 const productsSchema = Schema({
     nameProduct: {
@@ -21,7 +21,7 @@ const productsSchema = Schema({
         min: 0
     },
     category: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'Category',
         required: true
     },

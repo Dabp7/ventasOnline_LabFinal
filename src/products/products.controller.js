@@ -6,7 +6,7 @@ import Category from "../category/category.model.js"
 export const addProduct = async(req, res) =>{
     try {
         const data = req.body;
-        const category = await Category.findOne({nameCategory: data.category});
+        const category = await Category.findById(data.category)
 
         if(!category){
             return res.status(400).json({
@@ -24,7 +24,8 @@ export const addProduct = async(req, res) =>{
 
         res.status(200).json({
             success: true,
-            products
+            products,
+            category: category.nameCategory
         });
 
     }catch(err){
@@ -225,31 +226,40 @@ export const getProductsByCategory = async(req, res) =>{
 };
 
 
-export const getProductsByName = async(req, res) =>{
-    try{
+export const getProductsByName = async (req, res) => {
+    try {
         const { nameCategory } = req.params;
 
-        const product = await Products.find({nameCategory})
+        const categoryFind = await Category.findOne({ nameCategory });
 
-        if(!product){
+        if (!categoryFind) {
             return res.status(404).json({
                 success: false,
-                message: 'Producto no encontrado'
-            })
+                message: "Categoría no encontrada"
+            });
         }
 
+        const products = await Products.find({ category: categoryFind._id });
+
+        if (!products.length) {
+            return res.status(404).json({
+                success: false,
+                message: "No hay productos para esta categoría"
+            });
+        }
 
         return res.status(200).json({
             success: true,
-            total: product.length,
-            product
-        })
+            total: products.length,
+            products
+        });
 
     }catch(err){
         return res.status(500).json({
             success: false,
-            message: "Error al obtener el producto",
+            message: "Error al obtener los productos",
             error: err.message
         });
     }
 };
+

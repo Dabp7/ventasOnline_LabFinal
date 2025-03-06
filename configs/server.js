@@ -23,8 +23,8 @@ const middlewares = (app) => {
 const routes = (app) => {
     app.use("/ventaOnline/v1/auth", authRoutes);
     app.use("/ventaOnline/v1/user", userRoutes);
-    app.use("/ventaOnline/v1/category", categoryRoutes)
-    app.use("ventaOnline/v1/product", productRoutes)
+    app.use("/ventaOnline/v1/category", categoryRoutes);
+    app.use("/ventaOnline/v1/product", productRoutes);
     //app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 };
 
