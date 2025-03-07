@@ -9,6 +9,7 @@ import authRoutes from "../src/auth/auth.routes.js";
 import userRoutes from "../src/user/user.routes.js"
 import categoryRoutes from "../src/category/category.routes.js"
 import productRoutes from "../src/products/products.routes.js"
+import cartRoutes from "../src/cart/cart.routes.js"
 import { createCategoryDefault } from "../src/category/category.controller.js"
 
 
@@ -17,7 +18,6 @@ const middlewares = (app) => {
     app.use(cors());
     app.use(helmet());
     app.use(morgan("dev"));
-    //app.use(apiLimiter);
 };
 
 const routes = (app) => {
@@ -25,6 +25,7 @@ const routes = (app) => {
     app.use("/ventaOnline/v1/user", userRoutes);
     app.use("/ventaOnline/v1/category", categoryRoutes);
     app.use("/ventaOnline/v1/product", productRoutes);
+    app.use("/ventaOnline/v1/cart", cartRoutes);
     //app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 };
 
