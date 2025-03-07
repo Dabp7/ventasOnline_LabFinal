@@ -14,6 +14,7 @@ import buyRoutes from "../src/buys/buys.routes.js"
 import invoiceRoutes from "../src/invoice/invoice.routes.js"
 import { createCategoryDefault } from "../src/category/category.controller.js"
 import { swaggerDocs, swaggerUi } from "./swagger.js";
+import { adminDefaultCreated } from "../src/user/user.controller.js"
 
 
 const middlewares = (app) => {
@@ -50,6 +51,7 @@ export const initServer = () => {
         conectarDB();
         createCategoryDefault();
         routes(app);
+        adminDefaultCreated();
         app.listen(process.env.PORT)
         console.log(`Server running on port ${process.env.PORT}`)
     } catch (err) {
