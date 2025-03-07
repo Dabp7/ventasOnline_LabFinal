@@ -9,7 +9,7 @@ const invoiceSchema = Schema({
     products:[{
         product:{
             type: Schema.Types.ObjectId,
-            ref: "Product",
+            ref: "Products",
             required: true
         },
         nameProduct:{

@@ -2,20 +2,21 @@
 import Product from "../products/products.model.js"
 import Cart from "./cart.model.js"
 
+
 export const addProductCart = async(req, res) =>{
-    try{
+    try {
         const { nameProduct, quantity } = req.body;
 
         const product = await Product.findOne({ nameProduct });
 
-        if (!product) {
+        if(!product){
             return res.status(400).json({
                 success: false,
                 message: "Product not found"
             });
         }
 
-        if (quantity > product.stock) {
+        if(quantity > product.stock){
             return res.status(400).json({
                 success: false,
                 message: "Product out of stock"
@@ -24,22 +25,37 @@ export const addProductCart = async(req, res) =>{
 
         let cart = await Cart.findOne({ user: req.usuario._id });
 
-        if (!cart) {
-            cart = new Cart({ user: req.usuario._id, products: [] });
+        if(!cart){
+            cart = new Cart({ user: req.usuario._id, products: [], createdAt: new Date() });
         }
 
         const productExist = cart.products.find(p => p.product.toString() === product._id.toString());
 
-        if (productExist) {
+        if(productExist){
             productExist.quantity += quantity;
-        } else {
+        }else{
             cart.products.push({ product: product._id, quantity });
         }
 
         product.stock -= quantity;
-        await product.save(); 
+        await product.save();
 
-        const shoppingCart = await cart.save(); 
+        const shoppingCart = await cart.save();
+
+        setTimeout(async () =>{
+            const existingCart = await Cart.findById(cart._id);
+            if(existingCart && existingCart.products.length > 0){
+                for (let item of existingCart.products) {
+                    const prod = await Product.findById(item.product);
+                    if(prod){
+                        prod.stock += item.quantity;
+                        await prod.save();
+                    }
+                }
+                existingCart.products = [];
+                await existingCart.save();
+            }
+        }, 10 * 60 * 1000); 
 
         return res.status(200).json({
             success: true,

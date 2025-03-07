@@ -1,0 +1,325 @@
+[{
+  "_id": {
+    "$oid": "67cb1dd0fa091c14d9393047"
+  },
+  "nameProduct": "Coca-Cola",
+  "description": "Bebida gaseosa refrescante",
+  "price": 1.5,
+  "stock": 100,
+  "category": {
+    "$oid": "67cb1b6553547d6de99cd192"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1e1cfa091c14d939304c"
+  },
+  "nameProduct": "Jugo Natural de Naranja",
+  "description": "Jugo exprimido 100% natural",
+  "price": 2,
+  "stock": 80,
+  "category": {
+    "$oid": "67cb1b6553547d6de99cd192"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1e25fa091c14d9393051"
+  },
+  "nameProduct": "Café Molido",
+  "description": "Café de alta calidad en presentación de 500g",
+  "price": 5,
+  "stock": 98,
+  "category": {
+    "$oid": "67cb1b6553547d6de99cd192"
+  },
+  "soldUnits": 2
+},
+{
+  "_id": {
+    "$oid": "67cb1e2dfa091c14d9393056"
+  },
+  "nameProduct": "Agua Purificada",
+  "description": "Botella de agua de 1L",
+  "price": 1,
+  "stock": 196,
+  "category": {
+    "$oid": "67cb1b6553547d6de99cd192"
+  },
+  "soldUnits": 4
+},
+{
+  "_id": {
+    "$oid": "67cb1e35fa091c14d939305b"
+  },
+  "nameProduct": "Bebida Energética Red Bull",
+  "description": "Bebida energética para mayor rendimiento",
+  "price": 3.5,
+  "stock": 60,
+  "category": {
+    "$oid": "67cb1b6553547d6de99cd192"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1ebffa091c14d939306b"
+  },
+  "nameProduct": "Auriculares Inalámbricos",
+  "description": "Auriculares Bluetooth con cancelación de ruido",
+  "price": 25,
+  "stock": 30,
+  "category": {
+    "$oid": "67cb1b6d53547d6de99cd195"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1ec9fa091c14d9393070"
+  },
+  "nameProduct": "Cargador Rápido USB-C",
+  "description": "Cargador de 25W compatible con múltiples dispositivos",
+  "price": 15,
+  "stock": 50,
+  "category": {
+    "$oid": "67cb1b6d53547d6de99cd195"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1ed1fa091c14d9393075"
+  },
+  "nameProduct": "Mouse Gamer RGB",
+  "description": "Mouse ergonómico con iluminación LED",
+  "price": 18,
+  "stock": 40,
+  "category": {
+    "$oid": "67cb1b6d53547d6de99cd195"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1ed9fa091c14d939307a"
+  },
+  "nameProduct": "Smartwatch Deportivo",
+  "description": "Reloj inteligente con monitor de ritmo cardíaco",
+  "price": 60,
+  "stock": 35,
+  "category": {
+    "$oid": "67cb1b6d53547d6de99cd195"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1f23fa091c14d939307f"
+  },
+  "nameProduct": "Camiseta de Algodón",
+  "description": "Camiseta unisex 100% algodón",
+  "price": 10,
+  "stock": 70,
+  "category": {
+    "$oid": "67cb1b7453547d6de99cd198"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1f2ffa091c14d9393084"
+  },
+  "nameProduct": "Jeans Clásicos",
+  "description": "Pantalón de mezclilla azul para hombres y mujeres",
+  "price": 25,
+  "stock": 47,
+  "category": {
+    "$oid": "67cb1b7453547d6de99cd198"
+  },
+  "soldUnits": 3
+},
+{
+  "_id": {
+    "$oid": "67cb1f38fa091c14d9393089"
+  },
+  "nameProduct": "Zapatillas Deportivas",
+  "description": "Zapatillas cómodas para running",
+  "price": 45,
+  "stock": 30,
+  "category": {
+    "$oid": "67cb1b7453547d6de99cd198"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1f50fa091c14d939308e"
+  },
+  "nameProduct": "Chaqueta de Cuero",
+  "description": "Chaqueta elegante de cuero sintético",
+  "price": 70,
+  "stock": 20,
+  "category": {
+    "$oid": "67cb1b7453547d6de99cd198"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1f58fa091c14d9393093"
+  },
+  "nameProduct": "Gorra Casual",
+  "description": "Gorra ajustable para cualquier ocasión",
+  "price": 15,
+  "stock": 60,
+  "category": {
+    "$oid": "67cb1b7453547d6de99cd198"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1f95fa091c14d9393098"
+  },
+  "nameProduct": "Sartén Antiadherente",
+  "description": "Sartén de 28 cm con recubrimiento antiadherente",
+  "price": 30,
+  "stock": 40,
+  "category": {
+    "$oid": "67cb1b7a53547d6de99cd19b"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1f9efa091c14d939309d"
+  },
+  "nameProduct": "Set de Cuchillos de Cocina",
+  "description": "Juego de 5 cuchillos de acero inoxidable",
+  "price": 50,
+  "stock": 25,
+  "category": {
+    "$oid": "67cb1b7a53547d6de99cd19b"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1fa9fa091c14d93930a2"
+  },
+  "nameProduct": "Lámpara LED de Escritorio",
+  "description": "Lámpara ajustable con luz blanca y cálida",
+  "price": 20,
+  "stock": 35,
+  "category": {
+    "$oid": "67cb1b7a53547d6de99cd19b"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1fb3fa091c14d93930a7"
+  },
+  "nameProduct": "Juego de Sábanas",
+  "description": "Juego de sábanas de algodón para cama matrimonial",
+  "price": 55,
+  "stock": 15,
+  "category": {
+    "$oid": "67cb1b7a53547d6de99cd19b"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1fbbfa091c14d93930ac"
+  },
+  "nameProduct": "Aspiradora Portátil",
+  "description": "Aspiradora compacta ideal para limpieza del hogar",
+  "price": 85,
+  "stock": 10,
+  "category": {
+    "$oid": "67cb1b7a53547d6de99cd19b"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1fcbfa091c14d93930b1"
+  },
+  "nameProduct": "Balón de Fútbol",
+  "description": "Balón de fútbol profesional talla 5",
+  "price": 35,
+  "stock": 50,
+  "category": {
+    "$oid": "67cb1b7f53547d6de99cd19e"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1fd3fa091c14d93930b6"
+  },
+  "nameProduct": "Pesas de 5kg",
+  "description": "Par de pesas de 5kg para entrenamiento",
+  "price": 40,
+  "stock": 20,
+  "category": {
+    "$oid": "67cb1b7f53547d6de99cd19e"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1fdafa091c14d93930bb"
+  },
+  "nameProduct": "Bicicleta de Montaña",
+  "description": "Bicicleta con cambios y frenos de disco",
+  "price": 300,
+  "stock": 5,
+  "category": {
+    "$oid": "67cb1b7f53547d6de99cd19e"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1fe4fa091c14d93930c0"
+  },
+  "nameProduct": "Cuerda para Saltar",
+  "description": "Cuerda de velocidad para entrenamiento físico",
+  "price": 12,
+  "stock": 58,
+  "category": {
+    "$oid": "67cb1b7f53547d6de99cd19e"
+  },
+  "soldUnits": 2
+},
+{
+  "_id": {
+    "$oid": "67cb1fecfa091c14d93930c5"
+  },
+  "nameProduct": "Guantes de Boxeo",
+  "description": "Guantes de entrenamiento de 12 oz",
+  "price": 50,
+  "stock": 15,
+  "category": {
+    "$oid": "67cb1b7f53547d6de99cd19e"
+  },
+  "soldUnits": 0
+},
+{
+  "_id": {
+    "$oid": "67cb1ffdfa091c14d93930ca"
+  },
+  "nameProduct": "Guantes de Boxeo",
+  "description": "Guantes de entrenamiento de 12 oz",
+  "price": 50,
+  "stock": 15,
+  "category": {
+    "$oid": "67cb1b7f53547d6de99cd19e"
+  },
+  "soldUnits": 0
+}]

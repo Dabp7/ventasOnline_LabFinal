@@ -1,0 +1,928 @@
+{
+	"info": {
+		"_postman_id": "ed77ea23-7b23-424f-8fbc-e43785ed7f09",
+		"name": "Venta Online",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38160952"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"dbercian@gmail.com\",\r\n    \"password\": \"dBerc1an!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "fullName",
+									"value": "Usuario Prueba admin",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "pruebaAdmin",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "pruebaAdmin@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "dBerc1an!",
+									"type": "text"
+								},
+								{
+									"key": "profilePicture",
+									"type": "file",
+									"src": "/C:/Users/Informatica/Downloads/perfil-de-usuario.png"
+								},
+								{
+									"key": "phone",
+									"value": "49985236",
+									"type": "text"
+								},
+								{
+									"key": "role",
+									"value": "ADMIN_ROLE",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gestion Usuarios",
+			"item": [
+				{
+					"name": "Actualizar Role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjM0MjMsImV4cCI6MTc0MTM2NzAyM30.NEItn2qlHnZa6TW_boeGju1DS5B_kkuhul-0NUu9T7Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"role\": \"ADMIN_ROLE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/user/editRole/67cb17ce67ae9c9b85ef7ef4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"user",
+								"editRole",
+								"67cb17ce67ae9c9b85ef7ef4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjMxNjIsImV4cCI6MTc0MTM2Njc2Mn0.MlKqulGk9cfLoiMHZ09n8sfTq716FWv-cxbqZ9h2Z5s",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"Diego Bercian Perez\",\r\n    \"phone\": \"12345678\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/user/editUser/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"user",
+								"editUser",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTdjZTY3YWU5YzliODVlZjdlZjQiLCJpYXQiOjE3NDEzNjMzOTEsImV4cCI6MTc0MTM2Njk5MX0.UmWQPY88o989-YHqHfi8aNiCNLD94ERV1x-xZoabyzI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"dBerc1an!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/user/deleteUser/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"user",
+								"deleteUser",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Usuario Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjM0MjMsImV4cCI6MTc0MTM2NzAyM30.NEItn2qlHnZa6TW_boeGju1DS5B_kkuhul-0NUu9T7Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\": \"Samuel Perez Cap\",\r\n    \"phone\": \"89562332\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/user/editUserAdmin/67cb15a63f564b68a3640a73",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"user",
+								"editUserAdmin",
+								"67cb15a63f564b68a3640a73"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Categoria",
+			"item": [
+				{
+					"name": "Agregar Categoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjQwNTIsImV4cCI6MTc0MTM2NzY1Mn0._ebFHoF5U3RSKkqXpPz0ROhZGwDM_0zZxB8UazH8OKw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameCategory\": \"Prueba Categoria\",\r\n    \"description\": \"Equipamiento y accesorios deportivos\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/category/addCategory",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"category",
+								"addCategory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Categorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/category/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"category",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Categoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjQwNTIsImV4cCI6MTc0MTM2NzY1Mn0._ebFHoF5U3RSKkqXpPz0ROhZGwDM_0zZxB8UazH8OKw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\": \"Equipamiento y accesorios deportivos de futbol\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/category/editCategory/67cb1b7f53547d6de99cd19e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"category",
+								"editCategory",
+								"67cb1b7f53547d6de99cd19e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Categoria",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjQwNTIsImV4cCI6MTc0MTM2NzY1Mn0._ebFHoF5U3RSKkqXpPz0ROhZGwDM_0zZxB8UazH8OKw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/category/deleteCategory/67cb1c5afa091c14d9393042",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"category",
+								"deleteCategory",
+								"67cb1c5afa091c14d9393042"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Agregar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjQwNTIsImV4cCI6MTc0MTM2NzY1Mn0._ebFHoF5U3RSKkqXpPz0ROhZGwDM_0zZxB8UazH8OKw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameProduct\": \"Guantes de Boxeo\",\r\n    \"description\": \"Guantes de entrenamiento de 12 oz\",\r\n    \"price\": 50.00,\r\n    \"stock\": 15,\r\n    \"category\": \"67cb1b7f53547d6de99cd19e\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/product/addProduct",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"product",
+								"addProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/product/getProducts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"product",
+								"getProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjQwNTIsImV4cCI6MTc0MTM2NzY1Mn0._ebFHoF5U3RSKkqXpPz0ROhZGwDM_0zZxB8UazH8OKw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/product/searchProduct/67cb1e25fa091c14d9393051",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"product",
+								"searchProduct",
+								"67cb1e25fa091c14d9393051"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjQwNTIsImV4cCI6MTc0MTM2NzY1Mn0._ebFHoF5U3RSKkqXpPz0ROhZGwDM_0zZxB8UazH8OKw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"stock\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/product/updateProduct/67cb1e25fa091c14d9393051",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"product",
+								"updateProduct",
+								"67cb1e25fa091c14d9393051"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjQwNTIsImV4cCI6MTc0MTM2NzY1Mn0._ebFHoF5U3RSKkqXpPz0ROhZGwDM_0zZxB8UazH8OKw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/product/deleteProduct/67cb1e54fa091c14d9393060",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"product",
+								"deleteProduct",
+								"67cb1e54fa091c14d9393060"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Productos Más Vendidos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/product/getTopProducts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"product",
+								"getTopProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Productos agotados",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/product/getStockProducts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"product",
+								"getStockProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mayor Stock",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/product/getMostProducts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"product",
+								"getMostProducts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Productos por Categoria",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/product/getProductsByCategory/67cb1b6553547d6de99cd192",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"product",
+								"getProductsByCategory",
+								"67cb1b6553547d6de99cd192"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Categoria por Nombre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/product/getProductsByName/Bebidas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"product",
+								"getProductsByName",
+								"Bebidas"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carrito",
+			"item": [
+				{
+					"name": "Agregar al Carrito",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjQwNTIsImV4cCI6MTc0MTM2NzY1Mn0._ebFHoF5U3RSKkqXpPz0ROhZGwDM_0zZxB8UazH8OKw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nameProduct\": \"Cuerda para Saltar\",\r\n    \"quantity\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/cart/addProductCart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"cart",
+								"addProductCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver mi Carrito",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjQwNTIsImV4cCI6MTc0MTM2NzY1Mn0._ebFHoF5U3RSKkqXpPz0ROhZGwDM_0zZxB8UazH8OKw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/cart/getCart",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"cart",
+								"getCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Producto del Carrito",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjQwNTIsImV4cCI6MTc0MTM2NzY1Mn0._ebFHoF5U3RSKkqXpPz0ROhZGwDM_0zZxB8UazH8OKw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"quantity\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/cart/removeProduct/67cb1e2dfa091c14d9393056",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"cart",
+								"removeProduct",
+								"67cb1e2dfa091c14d9393056"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Compras",
+			"item": [
+				{
+					"name": "Confirmar Compra",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjQwNTIsImV4cCI6MTc0MTM2NzY1Mn0._ebFHoF5U3RSKkqXpPz0ROhZGwDM_0zZxB8UazH8OKw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/buy/completeBuy",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"buy",
+								"completeBuy"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Facturas",
+			"item": [
+				{
+					"name": "Historial de Compra",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2NiMTViZTNmNTY0YjY4YTM2NDBhNzciLCJpYXQiOjE3NDEzNjQwNTIsImV4cCI6MTc0MTM2NzY1Mn0._ebFHoF5U3RSKkqXpPz0ROhZGwDM_0zZxB8UazH8OKw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/ventaOnline/v1/invoice/getInvoices",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"ventaOnline",
+								"v1",
+								"invoice",
+								"getInvoices"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

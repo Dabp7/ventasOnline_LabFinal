@@ -1,12 +1,16 @@
 import fs from 'fs';
 import path from 'path';
+import { dirname } from "path";
 import pdfkit from 'pdfkit';
+import { fileURLToPath } from 'url'
 import Invoice from "../invoice/invoice.model.js";
 import Cart from "../cart/cart.model.js";
-import Product from "../products/products.model.js";
-import User from "../user/user.model.js";
+
+
 
 export const generateInvoice = async (req, res) => {
+
+    const __dirname = dirname(fileURLToPath(import.meta.url));
     try {
         const cart = await Cart.findOne({ user: req.usuario._id }).populate("products.product");
 
@@ -54,13 +58,13 @@ export const generateInvoice = async (req, res) => {
         cart.products = [];
         await cart.save();
 
-        const invoiceDir = path.join(__dirname, "../../public/docs/invoice");
+        const invoiceDir = path.join(__dirname, "../../public/uploads/invoice");
         if (!fs.existsSync(invoiceDir)) {
             fs.mkdirSync(invoiceDir, { recursive: true });
         }
 
         const dateStr = new Date().toISOString().replace(/[:.]/g, '-');
-        const fileName = `${dateStr}-${user.username}.pdf`;
+        const fileName = `${dateStr}-${req.usuario.username}.pdf`;
         const filePath = path.join(invoiceDir, fileName);
 
         const doc = new pdfkit();
@@ -68,15 +72,20 @@ export const generateInvoice = async (req, res) => {
 
         doc.fontSize(20).text('Invoice', { align: 'center' });
         doc.moveDown();
-        doc.fontSize(14).text(`User: ${user.username}`);
+        doc.fontSize(14).text(`User: ${req.usuario.username}`);
+        doc.fontSize(14).text(`Name: ${req.usuario.fullName}`);
+        doc.fontSize(14).text(`Phone: ${req.usuario.phone}`);
         doc.text(`Date: ${new Date().toLocaleString()}`);
         doc.text(`Total: $${total.toFixed(2)}`);
         doc.moveDown();
 
-        doc.fontSize(12).text('Products:');
-        cart.products.forEach(item => {
-            doc.text(`${item.quantity}x ${item.product.nameProduct} - $${item.product.price} each - Total: $${(item.quantity * item.product.price).toFixed(2)}`);
+        productsBuy.forEach(product => {
+            doc.text(`Product: ${product.nameProduct}`);
+            doc.text(`Quantity: ${product.quantity}`);
+            doc.text(`Price: Q.${product.price}`);
+            doc.text('----------------------------------');
         });
+
 
         doc.end();
 

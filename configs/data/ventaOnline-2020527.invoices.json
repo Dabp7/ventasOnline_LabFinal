@@ -1,0 +1,100 @@
+[{
+  "_id": {
+    "$oid": "67cb2334fa091c14d9393124"
+  },
+  "user": {
+    "$oid": "67cb15be3f564b68a3640a77"
+  },
+  "products": [
+    {
+      "product": {
+        "$oid": "67cb1e25fa091c14d9393051"
+      },
+      "nameProduct": "Café Molido",
+      "quantity": 2,
+      "price": 5,
+      "totalProduct": 10,
+      "_id": {
+        "$oid": "67cb2334fa091c14d9393125"
+      }
+    },
+    {
+      "product": {
+        "$oid": "67cb1e2dfa091c14d9393056"
+      },
+      "nameProduct": "Agua Purificada",
+      "quantity": 4,
+      "price": 1,
+      "totalProduct": 4,
+      "_id": {
+        "$oid": "67cb2334fa091c14d9393126"
+      }
+    },
+    {
+      "product": {
+        "$oid": "67cb1f2ffa091c14d9393084"
+      },
+      "nameProduct": "Jeans Clásicos",
+      "quantity": 3,
+      "price": 25,
+      "totalProduct": 75,
+      "_id": {
+        "$oid": "67cb2334fa091c14d9393127"
+      }
+    },
+    {
+      "product": {
+        "$oid": "67cb1fe4fa091c14d93930c0"
+      },
+      "nameProduct": "Cuerda para Saltar",
+      "quantity": 1,
+      "price": 12,
+      "totalProduct": 12,
+      "_id": {
+        "$oid": "67cb2334fa091c14d9393128"
+      }
+    }
+  ],
+  "total": 101,
+  "purchaseDate": {
+    "$date": "2025-03-07T16:47:48.229Z"
+  },
+  "createdAt": {
+    "$date": "2025-03-07T16:47:48.230Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-07T16:47:48.230Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "67cb2362fa091c14d9393136"
+  },
+  "user": {
+    "$oid": "67cb15be3f564b68a3640a77"
+  },
+  "products": [
+    {
+      "product": {
+        "$oid": "67cb1fe4fa091c14d93930c0"
+      },
+      "nameProduct": "Cuerda para Saltar",
+      "quantity": 1,
+      "price": 12,
+      "totalProduct": 12,
+      "_id": {
+        "$oid": "67cb2362fa091c14d9393137"
+      }
+    }
+  ],
+  "total": 12,
+  "purchaseDate": {
+    "$date": "2025-03-07T16:48:34.603Z"
+  },
+  "createdAt": {
+    "$date": "2025-03-07T16:48:34.604Z"
+  },
+  "updatedAt": {
+    "$date": "2025-03-07T16:48:34.604Z"
+  }
+}]

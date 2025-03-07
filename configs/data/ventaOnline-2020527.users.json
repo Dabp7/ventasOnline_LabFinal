@@ -1,0 +1,65 @@
+[{
+  "_id": {
+    "$oid": "67cb15a63f564b68a3640a73"
+  },
+  "fullName": "Samuel Perez Cap",
+  "username": "sPerez",
+  "email": "sperez@gmail.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$T39pNAKX5yTQJwyLyJggiQ$Y3T3c/04qPr7NRkZcgNUCxqf11F/Wq2BLkPxg5jrNZY",
+  "profilePicture": "perfil-de-usuario-1741362598022.png",
+  "phone": "89562332",
+  "role": "CLIENT_ROLE",
+  "status": true
+},
+{
+  "_id": {
+    "$oid": "67cb15be3f564b68a3640a77"
+  },
+  "fullName": "Diego Bercian Perez",
+  "username": "dbercian",
+  "email": "dbercian@gmail.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$7Z6YfEnPXq70k13/5boRNA$Cb/HQAALLprn/Q2r3znu8+lEkKoq23JqqZ9hKwmtoO4",
+  "profilePicture": "perfil-de-usuario-1741362622137.png",
+  "phone": "12345678",
+  "role": "ADMIN_ROLE",
+  "status": true
+},
+{
+  "_id": {
+    "$oid": "67cb15d43f564b68a3640a7b"
+  },
+  "fullName": "Devyn Tubac",
+  "username": "dTubac",
+  "email": "dTubac@gmail.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$qBLSdsXweRUA73HJ8jYkEQ$IPxL3CYOpKAENQYTkbsDfDqMxBY0nR6rnvNNuiDNfJs",
+  "profilePicture": "perfil-de-usuario-1741362644240.png",
+  "phone": "59986325",
+  "role": "ADMIN_ROLE",
+  "status": true
+},
+{
+  "_id": {
+    "$oid": "67cb15e93f564b68a3640a7f"
+  },
+  "fullName": "Pablo Villela",
+  "username": "pVillela",
+  "email": "pVillela@gmail.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$2qorjpgXy/0sJh6sktIL/w$IK7dmrtnpV52WJHLKmkl3YE2oPbbtXMExz0qKnChrWc",
+  "profilePicture": "perfil-de-usuario-1741362665034.png",
+  "phone": "49985236",
+  "role": "ADMIN_ROLE",
+  "status": true
+},
+{
+  "_id": {
+    "$oid": "67cb17ce67ae9c9b85ef7ef4"
+  },
+  "fullName": "Usuario Prueba admin",
+  "username": "pruebaAdmin",
+  "email": "pruebaAdmin@gmail.com",
+  "password": "$argon2id$v=19$m=65536,t=3,p=4$N8L8XZuZBRqGWwY/izW31w$GR/bTgazqkwbCXKX00eG828DvWXCgHRSPnAPbgClqOA",
+  "profilePicture": "perfil-de-usuario-1741363150048.png",
+  "phone": "49985236",
+  "role": "ADMIN_ROLE",
+  "status": true
+}]

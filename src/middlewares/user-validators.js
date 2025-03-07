@@ -45,8 +45,6 @@ export const updateRoleValidator = [
 export const updateUserValidator = [
     validateJWT,
     hasRoles("ADMIN_ROLE", "CLIENT_ROLE"),
-    param("uid", "No es un ID válido").isMongoId(),
-    param("uid").custom(userExists),
     validarCampos,
     handleErrors
 ];
@@ -54,9 +52,6 @@ export const updateUserValidator = [
 
 export const deleteUserValidator = [
     validateJWT,
-    hasRoles("ADMIN_ROLE"),
-    param("uid").isMongoId().withMessage("No es un ID válido de MongoDB"),
-    param("uid").custom(userExists),
     validarCampos,
     handleErrors
 ];
@@ -84,25 +79,14 @@ export const registerValidatorAdmin = [
 ];
 
 
-
-/*
-export const updatePasswordValidator = [
-    param("uid").isMongoId().withMessage("No es un ID válido de MongoDB"),
+export const updateUserAdminValidator = [
+    validateJWT,
+    hasRoles("ADMIN_ROLE"),
+    param("uid", "No es un ID válido").isMongoId(),
     param("uid").custom(userExists),
-    body("newPassword").isLength({ min: 8 }).withMessage("El password debe contener al menos 8 caracteres"),
     validarCampos,
     handleErrors
 ];
-
-
-
-export const updateProfilePictureValidator = [
-    param("uid").isMongoId().withMessage("No es un ID válido de MongoDB"),
-    param("uid").custom(userExists),
-    validarCampos,
-    deleteFileOnError,
-    handleErrors
-];*/
 
 
 

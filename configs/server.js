@@ -11,7 +11,9 @@ import categoryRoutes from "../src/category/category.routes.js"
 import productRoutes from "../src/products/products.routes.js"
 import cartRoutes from "../src/cart/cart.routes.js"
 import buyRoutes from "../src/buys/buys.routes.js"
+import invoiceRoutes from "../src/invoice/invoice.routes.js"
 import { createCategoryDefault } from "../src/category/category.controller.js"
+import { swaggerDocs, swaggerUi } from "./swagger.js";
 
 
 const middlewares = (app) => {
@@ -28,7 +30,8 @@ const routes = (app) => {
     app.use("/ventaOnline/v1/product", productRoutes);
     app.use("/ventaOnline/v1/cart", cartRoutes);
     app.use("/ventaOnline/v1/buy", buyRoutes);
-    //app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+    app.use("/ventaOnline/v1/invoice", invoiceRoutes);
+    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs))
 };
 
 const conectarDB = async () => {

@@ -1,6 +1,7 @@
 import User from "../user/user.model.js"
 import Category from "../category/category.model.js"
 import Products from "../products/products.model.js"
+import Invoice from "../invoice/invoice.model.js"
 
 
 export const emailExists = async (email = "") => {
@@ -37,6 +38,8 @@ export const productExists = async (idProduct = " ") => {
         throw new Error("No existe el producto con el ID proporcionado")
     }
 }
+
+
 
 
 

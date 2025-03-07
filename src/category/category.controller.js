@@ -1,6 +1,7 @@
 'use strict';
 
 import Category from './category.model.js';
+import Product from "../products/products.model.js"
 
 export const createCategoryDefault = async(req, res) =>{
     
@@ -95,22 +96,31 @@ export const updateCategory = async(req, res) =>{
     }
 }
 
-export const deleteCategory = async(req, res) =>{
-    try{
+export const deleteCategory = async (req, res) => {
+    try {
         const { idCategory } = req.params;
-        
+        const defaultCategory = await Category.findOne({ nameCategory: "Categoria Predeterminada" });
+
+        if (!defaultCategory) {
+            return res.status(400).json({
+                success: false,
+                message: "No se encontró la categoría por defecto"
+            });
+        }
+
+        await Product.updateMany({ category: idCategory }, { category: defaultCategory._id });
         await Category.findByIdAndDelete(idCategory);
 
-        res.status(200).json({ 
+        res.status(200).json({
             success: true,
-            message: 'Categoria eliminada exitosamente' 
+            message: 'Categoría eliminada exitosamente y productos reasignados'
         });
-    }catch(err){
+    }catch (err){
         res.status(500).json({
             success: false,
-            message: 'Error al eliminar la categoria',
+            message: 'Error al eliminar la categoría',
             error: err.message
         });
     }
-}
+};
 
