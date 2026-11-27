@@ -1,5 +1,24 @@
 import Invoice from "./invoice.model.js";
 import User from "../user/user.model.js"
+import PDFDocument from 'pdfkit';
+
+export const downloadInvoice = async (req, res) => {
+    try {
+        const invoice = await Invoice.findOne({ _id: req.params.id, user: req.usuario._id });
+        if (!invoice) return res.status(404).json({ success: false, message: 'Invoice not found' });
+        res.type('application/pdf').attachment('invoice-' + invoice.id + '.pdf');
+        const doc = new PDFDocument();
+        doc.on('error', () => res.destroy());
+        doc.pipe(res);
+        doc.fontSize(20).text('Comprobante de demostracion');
+        doc.fontSize(12).text('No es un documento fiscal. Moneda: GTQ');
+        doc.text('Referencia: ' + invoice.id);
+        doc.text('Fecha: ' + invoice.purchaseDate.toISOString());
+        for (const line of invoice.products) doc.text(line.nameProduct + ' x ' + line.quantity + ': Q ' + line.totalProduct.toFixed(2));
+        doc.text('Total: Q ' + invoice.total.toFixed(2));
+        doc.end();
+    } catch { if (!res.headersSent) res.status(400).json({ success: false, message: 'Invalid invoice' }); }
+};
 
 
 export const getInvoicesByUser = async (req, res) => {

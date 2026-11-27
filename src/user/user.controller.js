@@ -2,37 +2,10 @@ import { hash, verify } from "argon2";
 import User from "./user.model.js";
 
 
-export const adminDefaultCreated = async (req, res) => {
-    try{
-
-        const defaultAdmin = await User.findOne({ email: "Dabp@gmail.com" });
-        const encryptedPassword = await hash("dBerc1an!")
-
-        if(!defaultAdmin){
-            const newAdmin = new User({
-                fullName: "Diego Bercian",
-                username: "Dabpp",
-                email: "Dabp@gmail.com",
-                password: encryptedPassword,
-                phone: "49099817",
-                role: "ADMIN_ROLE"
-            })
-    
-            await newAdmin.save();
-        }
-
-    }catch(err){
-        return res.status(500).json({
-            message: "Error al crear el administrador general",
-            error: err.message
-        });
-    }
-};
-
-
 export const updateUser = async (req, res) => {
     try {
-        const data = req.body;
+        const { fullName, phone, username, email } = req.body;
+        const data = Object.fromEntries(Object.entries({ fullName, phone, username, email }).filter(([, value]) => value !== undefined));
         const user = req.usuario
 
         const updatedUser = await User.findByIdAndUpdate(user._id, data, { new: true });
@@ -138,7 +111,8 @@ export const deleteUser = async (req, res) => {
 export const updateUserAdmin = async (req, res) => {
     try {
         const { uid } = req.params
-        const data  = req.body;
+        const { fullName, phone, username, email } = req.body;
+        const data = Object.fromEntries(Object.entries({ fullName, phone, username, email }).filter(([, value]) => value !== undefined));
 
       
         const userUpdate = await User.findById(uid);

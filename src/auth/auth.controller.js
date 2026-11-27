@@ -9,6 +9,8 @@ export const register = async(req, res) =>{
         const encryptedPassword = await hash(data.password)
         data.password = encryptedPassword
         data.profilePicture = profilePicture
+        data.role = 'CLIENT_ROLE'
+        data.status = true
 
         const user = await User.create(data);
 
@@ -32,7 +34,7 @@ export const login = async (req, res) =>{
             $or:[{email: email}, {username: username}]
         })
 
-        if(!user){
+        if(!user || !user.status){
             return res.status(400).json({
                 message: "Crendenciales inválidas",
                 error:"No existe el usuario o correo ingresado"

@@ -20,7 +20,7 @@ export const createProductValidator = [
 
 export const getProductByIdValidator = [
     validateJWT,
-    hasRoles("ADMIN_ROLE", "USER_ROLE"),
+    hasRoles("ADMIN_ROLE", "CLIENT_ROLE"),
     param("idProduct").isMongoId().withMessage("No es un ID válido de MongoDB"),
     param("idProduct").custom(productExists),
     validarCampos,
