@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { getInvoicesByUser, getInvoicesByUserAdmin } from "./invoice.controller.js";
+import { getInvoicesByUser, getInvoicesByUserAdmin, downloadInvoice } from "./invoice.controller.js";
+import { validateJWT } from '../middlewares/validate-jwt.js';
 import { getInvoiceValidator, getInvoiceAdminValidator } from "../middlewares/invoice.validators.js";
 
 const router = Router();
+router.get('/:id/pdf', validateJWT, downloadInvoice);
 
 /**
  * @swagger

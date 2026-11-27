@@ -4,7 +4,8 @@ const cartSchema = Schema({
     user:{
         type: Schema.Types.ObjectId,
         ref: "User",
-        required: [true, "User is required"]
+        required: [true, "User is required"],
+        unique: true
     },
     products: [
         {
@@ -15,7 +16,9 @@ const cartSchema = Schema({
             },
             quantity: {
                 type: Number,
-                required: true
+                required: true,
+                min: 1,
+                validate: Number.isSafeInteger
             }
         }
     ]

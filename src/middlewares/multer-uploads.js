@@ -1,16 +1,18 @@
+import { mkdirSync } from "node:fs";
 import multer from "multer";
 import { dirname, extname, join } from "path";
 import { fileURLToPath } from "url";
 
 const CURRENT_DIR = dirname(fileURLToPath(import.meta.url));
 const MIMETYPES = ["image/png", "image/jpg", "image/jpeg"];
-const MAX_SIZE = 100000000;
+const MAX_SIZE = 2 * 1024 * 1024;
 
 const createMulterConfig = (destinationFolder) => {
     return multer({
         storage: multer.diskStorage({
             destination: (req, file, cb) => {
                 const fullPath = join(CURRENT_DIR, destinationFolder);
+                mkdirSync(fullPath, { recursive: true });
                 req.filePath = fullPath;
                 cb(null, fullPath);
             },

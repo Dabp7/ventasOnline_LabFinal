@@ -1,44 +1,14 @@
-import jwt from "jsonwebtoken"
-import User from "../user/user.model.js"
-
+import jwt from 'jsonwebtoken';
+import User from '../user/user.model.js';
 export const validateJWT = async (req, res, next) => {
-    try{
-        let token = req.body.token || req.query.token || req.headers["authorization"]
-
-        if(!token){
-            return res.status(400).json({
-                success: false,
-                message: "No existe token en la petición"
-            })
-        }
-
-        token = token.replace(/^Bearer\s+/, "")
-
-        const { uid } = jwt.verify(token, process.env.SECRETORPRIVATEKEY)
-
-        const user = await User.findById(uid)
-
-        if(!user){
-           return res.status(400).json({
-                success: false,
-                message: "usaurio no existe en la DB"
-           }) 
-        }
-
-        if(user.status === false){
-            return res.status(400).json({
-                success: false,
-                message: " Usuario desactivado previamente"
-            })
-        }
-
-        req.usuario = user
-        next()
-    }catch(err){
-        return res.status(500).json({
-            success: false,
-            message : "Error al validar el token",
-            error: err.message
-        })
-    }
-}
+    const header = req.headers.authorization;
+    if (!header?.startsWith('Bearer ')) return res.status(401).json({ success: false, message: 'Bearer token required' });
+    let uid;
+    try { ({ uid } = jwt.verify(header.slice(7), process.env.SECRETORPRIVATEKEY, { algorithms: ['HS256'] })); }
+    catch { return res.status(401).json({ success: false, message: 'Invalid or expired token' }); }
+    try {
+        const user = await User.findById(uid);
+        if (!user || !user.status) return res.status(401).json({ success: false, message: 'Inactive user' });
+        req.usuario = user; next();
+    } catch { return res.status(503).json({ success: false, message: 'Authentication unavailable' }); }
+};
