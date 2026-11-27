@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -24,5 +25,6 @@ export function createApp() {
 export async function initServer() {
     if (!process.env.SECRETORPRIVATEKEY || process.env.SECRETORPRIVATEKEY.length < 32) throw new Error('SECRETORPRIVATEKEY must have at least 32 characters');
     await dbConnection();
+    await Promise.all(Object.values(mongoose.models).map(model => model.init()));
     return createApp().listen(Number(process.env.PORT || 3001), '127.0.0.1', () => console.log('Ventas Online ready'));
 }

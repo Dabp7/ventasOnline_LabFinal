@@ -14,3 +14,6 @@ Resultado: seis pruebas aprobadas, cero fallos. La suite levanta y elimina su pr
 - Registro y edición de perfil sin elevación de privilegios ni serialización de hashes.
 
 Se retiraron del árbol versionado .env, dumps y comprobantes previos; siguen en el historial. Cualquier credencial histórica real requiere rotación por su propietario. El seed nuevo solo contiene identidades ficticias.
+
+Verificación adicional 2026-11-27: seed en base vacía, proceso real `node index.js`, health, login y catálogo aprobados. Se añadió la ruta pública de catálogo `/product/` documentada (se conserva `/getProducts`) y se espera la creación de índices antes de escuchar. Un fallo de arranque desconecta MongoDB.
+`npm audit --omit=dev`: cero vulnerabilidades.
