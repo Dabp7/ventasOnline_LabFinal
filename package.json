@@ -8,6 +8,7 @@
     "dev": "node --watch index.js",
     "seed": "node scripts/seed.js"
   },
+  "config": { "mongodbMemoryServer": { "disablePostinstall": true } },
   "keywords": [],
   "author": "Diego Bercian",
   "description": "Proyecto sobre una gestión de ventas de super mercado",

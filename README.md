@@ -32,8 +32,10 @@ Los precios se convierten a centavos para calcular líneas y totales. La moneda 
 ```sh
 npm test
 ```
-Los tests descargan y levantan MongoDB real temporal con replica set (mongodb-memory-server); no necesitan Docker ni .env. Verifican compras concurrentes, doble confirmación, rollback, cantidades inválidas, acceso a comprobantes y elevación de rol. La primera ejecución necesita internet para el binario oficial. GitHub Actions ejecuta instalación limpia y esta misma suite.
+Los tests descargan y levantan MongoDB real temporal con replica set (mongodb-memory-server); no necesitan Docker ni .env. Verifican compras concurrentes, doble confirmación, rollback, cantidades inválidas, acceso a comprobantes y elevación de rol. npm ci no descarga MongoDB: la primera ejecución de las pruebas obtiene el binario oficial 8.0.16 elegido por la suite. GitHub Actions ejecuta instalación limpia y esta misma suite.
 
 ## Configuración y límites
 .env.example documenta PORT, URI_MONGO y SECRETORPRIVATEKEY. No versionar .env, dumps con usuarios ni comprobantes. Si alguna credencial del historial correspondió a un servicio real, debe rotarse en ese servicio; borrar el archivo actual no revoca una credencial histórica.
 Las rutas académicas de administración se conservan. Esta demo local no es una tienda productiva. Las decisiones y criterios están en docs/SPEC.md.
+
+Crear o editar productos admite únicamente nombre, descripción, precio, stock y categoría existente. El stock es un entero no negativo y el precio admite hasta dos decimales; soldUnits se calcula al comprar y no es un campo editable. La categoría predeterminada no puede borrarse, para conservar las referencias del catálogo.

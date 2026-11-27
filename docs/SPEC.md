@@ -8,3 +8,5 @@ Los comprobantes se regeneran desde el snapshot de la factura por una ruta auten
 Solo el propietario obtiene el PDF. La ruta administrativa conserva su control de rol.
 Registro y edición de perfil no permiten elevar el rol. Los hashes no se serializan.
 MongoDB debe ser replica set, incluso en local; una instancia standalone no cumple el contrato.
+
+La administración del catálogo conserva las mismas invariantes: stock entero no negativo, precio seguro con hasta dos decimales y categoría existente. Solo se aceptan campos editables; un body HTTP no ejecuta operadores MongoDB ni altera soldUnits. La categoría predeterminada no puede eliminarse mientras cumple la función de respaldo.
