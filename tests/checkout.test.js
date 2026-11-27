@@ -91,3 +91,40 @@ test('registration and profile update cannot assign privileged roles', async () 
     assert.equal((await User.findById(alice.id)).role, 'CLIENT_ROLE');
     assert.equal(response.body.user.password, undefined);
 });
+
+test('administrative product edits reject invalid stock, money and missing category without mutation', async () => {
+    await User.updateOne({_id: alice.id}, {$set: {role: 'ADMIN_ROLE'}});
+    for (const changes of [{stock: -1}, {stock: 1.5}, {price: -0.01}, {price: 10.001}, {category: new mongoose.Types.ObjectId().toString()}]) {
+        const response = await request(app).put('/ventaOnline/v1/product/updateProduct/' + product.id).set(auth(aliceToken)).send(changes);
+        assert.equal(response.status, 400, JSON.stringify(changes));
+        const stored = await Product.findById(product.id);
+        assert.equal(stored.stock, 1);
+        assert.equal(stored.price, 10.05);
+        assert.equal(stored.category.toString(), product.category.toString());
+    }
+    const valid = await request(app).put('/ventaOnline/v1/product/updateProduct/' + product.id).set(auth(aliceToken)).send({stock: 4, price: 12.25});
+    assert.equal(valid.status, 200);
+    assert.equal(valid.body.product.stock, 4);
+    assert.equal(valid.body.product.price, 12.25);
+});
+
+test('product update cannot execute client-supplied MongoDB operators', async () => {
+    await User.updateOne({_id: alice.id}, {$set: {role: 'ADMIN_ROLE'}});
+    const response = await request(app).put('/ventaOnline/v1/product/updateProduct/' + product.id).set(auth(aliceToken)).send({$inc: {stock: -99}, soldUnits: 999});
+    assert.equal(response.status, 400);
+    const stored = await Product.findById(product.id);
+    assert.equal(stored.stock, 1);
+    assert.equal(stored.soldUnits, 0);
+});
+
+test('the fallback category cannot be deleted while products reference it', async () => {
+    await User.updateOne({_id: alice.id}, {$set: {role: 'ADMIN_ROLE'}});
+    const fallback = await Category.create({nameCategory: 'Categoria Predeterminada', description: 'Fallback'});
+    await Product.updateOne({_id: product.id}, {$set: {category: fallback.id}});
+    for (const id of [fallback.id, fallback.id.toUpperCase()]) {
+        const response = await request(app).delete('/ventaOnline/v1/category/deleteCategory/' + id).set(auth(aliceToken));
+        assert.equal(response.status, 409);
+    }
+    assert.ok(await Category.exists({_id: fallback.id}));
+    assert.equal((await Product.findById(product.id)).category.toString(), fallback.id);
+});

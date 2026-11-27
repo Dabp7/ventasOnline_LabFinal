@@ -17,6 +17,8 @@ En PowerShell usar `Copy-Item .env.example .env`. Elegir un secreto local de al 
 API: http://127.0.0.1:3001, salud /health, documentación /api-docs.
 Usuarios sintéticos: admin@example.test, alice@example.test y bob@example.test. Contraseña solo de demo: Demo-password-123! El seed no elimina datos y se limita a venta_online_demo. No se crea un administrador con datos personales al iniciar.
 
+El seed también crea de forma idempotente la categoría Demo y la Categoria Predeterminada. Al borrar una categoría normal, sus productos se reasignan a esa categoría de respaldo, que no puede eliminarse. Ejecutar el seed otra vez no duplica los datos ni reinicia existencias.
+
 ## Recorrido de compra
 1. POST /ventaOnline/v1/auth/login con email y password; usar userDetails.token como Authorization: Bearer.
 2. GET /ventaOnline/v1/product/ obtiene el catálogo.
@@ -32,8 +34,10 @@ Los precios se convierten a centavos para calcular líneas y totales. La moneda 
 ```sh
 npm test
 ```
-Los tests descargan y levantan MongoDB real temporal con replica set (mongodb-memory-server); no necesitan Docker ni .env. Verifican compras concurrentes, doble confirmación, rollback, cantidades inválidas, acceso a comprobantes y elevación de rol. La primera ejecución necesita internet para el binario oficial. GitHub Actions ejecuta instalación limpia y esta misma suite.
+Los tests descargan y levantan MongoDB real temporal con replica set (mongodb-memory-server); no necesitan Docker ni .env. Verifican compras concurrentes, doble confirmación, rollback, cantidades inválidas, acceso a comprobantes y elevación de rol. npm ci no descarga MongoDB: la primera ejecución de las pruebas obtiene el binario oficial 8.0.16 elegido por la suite. GitHub Actions ejecuta instalación limpia y esta misma suite.
 
 ## Configuración y límites
 .env.example documenta PORT, URI_MONGO y SECRETORPRIVATEKEY. No versionar .env, dumps con usuarios ni comprobantes. Si alguna credencial del historial correspondió a un servicio real, debe rotarse en ese servicio; borrar el archivo actual no revoca una credencial histórica.
 Las rutas académicas de administración se conservan. Esta demo local no es una tienda productiva. Las decisiones y criterios están en docs/SPEC.md.
+
+Crear o editar productos admite únicamente nombre, descripción, precio, stock y categoría existente. El stock es un entero no negativo y el precio admite hasta dos decimales; soldUnits se calcula al comprar y no es un campo editable. La categoría predeterminada no puede borrarse, para conservar las referencias del catálogo.

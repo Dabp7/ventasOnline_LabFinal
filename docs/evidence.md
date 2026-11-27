@@ -17,3 +17,9 @@ Se retiraron del árbol versionado .env, dumps y comprobantes previos; siguen en
 
 Verificación adicional 2026-11-27: seed en base vacía, proceso real `node index.js`, health, login y catálogo aprobados. Se añadió la ruta pública de catálogo `/product/` documentada (se conserva `/getProducts`) y se espera la creación de índices antes de escuchar. Un fallo de arranque desconecta MongoDB.
 `npm audit --omit=dev`: cero vulnerabilidades.
+
+Revisión independiente adicional: tres regresiones reprodujeron respuestas 200 que dejaban stock negativo, ejecutaban un operador MongoDB recibido en el body y borraban la categoría predeterminada con productos que la referenciaban. Se añadieron validación y lista de campos editables en altas/ediciones, actualizaciones mediante $set y protección del respaldo. La suite final pasó nueve pruebas reales, incluida una edición válida y el id de categoría tanto en minúsculas como en mayúsculas.
+
+`config.mongodbMemoryServer.disablePostinstall=true` evita la descarga de otro binario durante npm ci; el resolver de la dependencia confirmó true. La suite sigue eligiendo 8.0.16 y esta ejecución reutilizó el mongod local 8.0.8 mediante las variables ya descritas. No se cambiaron dependencias ni se utilizaron datos personales.
+
+Verificación final del seed: una regresión ejecutó dos veces el proceso real scripts/seed.js contra una base temporal vacía llamada venta_online_demo. Antes de la corrección, borrar la categoría Demo respondía 400 porque faltaba el respaldo. El seed ahora crea Categoria Predeterminada con upsert y datos sintéticos, sin hacerlo al arrancar la API. La suite completa pasó diez pruebas: el caso nuevo confirma tres usuarios y un producto sin duplicados, eliminación de la categoría normal con reasignación al respaldo y rechazo 409 al intentar borrar ese respaldo.

@@ -2,10 +2,32 @@
 
 import Products from './products.model.js';
 import Category from "../category/category.model.js"
+import mongoose from 'mongoose';
+import { fail, respondError } from '../helpers/domain-error.js';
+
+async function productFields(body, partial = false) {
+    const allowed = ['nameProduct', 'description', 'price', 'stock', 'category'];
+    if (!body || typeof body !== 'object' || Array.isArray(body) || Object.keys(body).some(key => !allowed.includes(key))) fail(400, 'Only editable product fields are accepted');
+    const data = Object.fromEntries(Object.entries(body).filter(([, value]) => value !== undefined));
+    if (!Object.keys(data).length) fail(400, 'No editable product fields');
+    if (data.nameProduct !== undefined || !partial) {
+        if (typeof data.nameProduct !== 'string' || !data.nameProduct.trim()) fail(400, 'Product name is required');
+        data.nameProduct = data.nameProduct.trim();
+    }
+    if (data.description !== undefined && typeof data.description !== 'string') fail(400, 'Invalid description');
+    if (data.stock !== undefined || !partial) if (!Number.isSafeInteger(data.stock) || data.stock < 0) fail(400, 'Stock must be a nonnegative safe integer');
+    if (data.price !== undefined || !partial) {
+        if (typeof data.price !== 'number' || !Number.isFinite(data.price) || data.price < 0 || !Number.isSafeInteger(Math.round(data.price * 100)) || Math.abs(data.price * 100 - Math.round(data.price * 100)) > 0.000001) fail(400, 'Price must be a nonnegative amount with at most two decimals');
+    }
+    if (data.category !== undefined || !partial) {
+        if (!mongoose.isValidObjectId(data.category) || !await Category.exists({_id: data.category})) fail(400, 'Category does not exist');
+    }
+    return data;
+}
 
 export const addProduct = async(req, res) =>{
     try {
-        const data = req.body;
+        const data = await productFields(req.body);
         const category = await Category.findById(data.category)
 
         if(!category){
@@ -28,13 +50,7 @@ export const addProduct = async(req, res) =>{
             category: category.nameCategory
         });
 
-    }catch(err){
-        res.status(500).json({
-            success: false,
-            message: 'Error al crear el producto',
-            error: err.message 
-        });
-    }
+    }catch(err){ return respondError(res, err); }
 }
 
 export const getProducts = async(req, res) =>{
@@ -93,9 +109,10 @@ export const searchProduct = async (req, res) => {
 export const updateProduct = async(req, res) =>{
     try{
         const { idProduct } = req.params;
-        const data = req.body;
+        const data = await productFields(req.body, true);
 
-        const updateProduct = await Products.findByIdAndUpdate(idProduct, data, { new: true })
+        const updateProduct = await Products.findByIdAndUpdate(idProduct, {$set: data}, { new: true, runValidators: true })
+        if (!updateProduct) fail(404, 'Product not found');
 
         res.status(200).json({
             success: true,
@@ -104,13 +121,7 @@ export const updateProduct = async(req, res) =>{
         });
 
 
-    }catch(err){
-        res.status(500).json({
-            success: false,
-            msg: 'Error al actualizar el producto',
-            error: err.message
-        })
-    }
+    }catch(err){ return respondError(res, err); }
 };
 
 

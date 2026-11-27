@@ -108,6 +108,10 @@ export const deleteCategory = async (req, res) => {
             });
         }
 
+        if (defaultCategory._id.equals(idCategory)) {
+            return res.status(409).json({ success: false, message: 'La categoria predeterminada no puede eliminarse' });
+        }
+
         await Product.updateMany({ category: idCategory }, { category: defaultCategory._id });
         await Category.findByIdAndDelete(idCategory);
 
