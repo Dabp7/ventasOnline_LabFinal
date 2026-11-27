@@ -7,6 +7,7 @@ import { addProduct, getProducts,
 import { createProductValidator, getProductByIdValidator, updateProductValidator, deleteCategoryValidator } from "../middlewares/products-validators.js";
 
 const router = Router();
+router.get('/', getProducts);
 
 /**
  * @swagger
